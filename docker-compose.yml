@@ -5,18 +5,14 @@
 version: '3.5'
 services:
   mediawiki:
-    image: mediawiki
-    restart: always
+    image: sundin-mediawiki
     ports:
       - 8080:80
-    links:
-      - database
     volumes:
+      - ./settings/LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./settings:/external_includes
       - ./images:/var/www/html/images
-      # After initial setup, download LocalSettings.php to the same directory as
-      # this yaml and uncomment the following line and use compose to restart
-      # the mediawiki service
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+    restart: always
   database:
     image: mariadb
     restart: always
@@ -36,6 +32,12 @@ services:
       - DB_DUMP_TARGET=/db
       - DB_DUMP_FREQ=1440
       - DB_DUMP_BEGIN=+1
+  parsoid:
+    image: thenets/parsoid:0.9.0
+    ports:
+      - 8081:8000
+    environment:
+      - PARSOID_DOMAIN_mediawiki=http://mediawiki/api.php
 networks:
   default:
     name: mediawiki-network

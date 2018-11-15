@@ -1,6 +1,6 @@
 # MediaWiki configuration
 .env
-LocalSettings.php
+settings/mediawiki_secrets.php
 
 # Wiki data
 db_backup/
