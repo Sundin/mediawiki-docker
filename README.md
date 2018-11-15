@@ -27,15 +27,17 @@ A Docker image for setting up a MediaWiki using MariaDB for storage. Based on th
     $wgDBpassword = "[mysql_password]";
     ```
 
-* Make sure the line `- ./settings/LocalSettings.php:/var/www/html/LocalSettings.php` in `docker-compose.yml` is commented out.
+* Comment out the line `- ./settings/LocalSettings.php:/var/www/html/LocalSettings.php` in `docker-compose.yml`.
 
 * Build the mediawiki Docker image: `docker build -t sundin-mediawiki .`
 
 * Run `docker-compose up` and follow the instructions. 
 
-* When creating the database you need to use `database` as database host (instead of `localhost`). The other database credentials should be the same as the once you specified in the `.env` file.
+* When creating the database you need to use `database` as database host (instead of `localhost`). The other database credentials should be the same as the ones you specified in the `.env` and `mediawiki_secrets.php` files.
 
-* After the setup wizard is finished you will get a `LocalSettings.php` file. Download this file and place it in the `settings` directory.
+* After the setup wizard is finished you will get a `LocalSettings.php` file. Download this file and place it in the `settings` directory. You need to make some modifications to it as listed below. Alternatively, you can use the one already included in this repo.
+    * Add the following line at the very end of the file to configure VisualEditor: `require_once("/external_includes/visual_editor_configuration.php");`
+    * Replace the three lines containing your $wgDBname, $wgDBuser and $wgDBpassword with this line: `require_once("/external_includes/mediawiki_secrets.php");`. When you have done this you can share your LocalSettings file without leaking any sensitive data about your database.
 
 * Uncomment the `- ./settings/LocalSettings.php:/var/www/html/LocalSettings.php` line in `docker-compose.yml`.
 
