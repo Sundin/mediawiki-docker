@@ -17,6 +17,8 @@ services:
     image: mariadb
     restart: always
     # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     env_file:
       - .env
   backup:

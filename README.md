@@ -3,7 +3,7 @@
 A Docker image for setting up a MediaWiki using MariaDB for storage. Based on the official [MediaWiki image](https://hub.docker.com/_/mediawiki/) and complemented with [deitch/mysql-backup](https://github.com/deitch/mysql-backup) for automatic backups and VisualEditor for WSIWYG editing of wiki pages.
 
 ## Features
-* [MediaWiki](https://hub.docker.com/_/mediawiki/)
+* [MediaWiki](https://hub.docker.com/_/mediawiki/) 1.31.1
 * MariaDB
 * [deitch/mysql-backup](https://github.com/deitch/mysql-backup): for automatic database backups.
 * Parsoid: Translates between markdown syntax and HTML at runtime. Necessary for the VisualEditor plugin.
@@ -33,7 +33,9 @@ A Docker image for setting up a MediaWiki using MariaDB for storage. Based on th
 
 * Run `docker-compose up` and follow the instructions. 
 
-* When creating the database you need to use `database` as database host (instead of `localhost`). The other database credentials should be the same as the ones you specified in the `.env` and `mediawiki_secrets.php` files.
+* Visit http://localhost:8080 in the browser and follow the instructions in the setup wizard.
+
+    * When creating the database you need to use `database` as database host (instead of `localhost`). The other database credentials should be the same as the ones you specified in the `.env` and `mediawiki_secrets.php` files.
 
 * After the setup wizard is finished you will get a `LocalSettings.php` file. Download this file and place it in the `settings` directory. You need to make some modifications to it as listed below. Alternatively, you can use the one already included in this repo.
     * Add the following line at the very end of the file to configure VisualEditor: `require_once("/external_includes/visual_editor_configuration.php");`
