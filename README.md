@@ -36,6 +36,6 @@ Backups are stored in the `db_backup` folder.
 
 To restore a backup, simply run the following command in the root folder while the database container is running:
 
-    docker run --env-file=.env -e DB_RESTORE_TARGET=/backup/db_backup_20181115083120.gz -v $PWD/db_backup:/backup --network="mediawiki-network" deitch/mysql-backup
+    docker run --env-file=.env -v $PWD/db_backup:/backup --network="mediawiki-network" -e DB_RESTORE_TARGET=/backup/db_backup_20181115083120.gz deitch/mysql-backup
 
 (Replace `db_backup_20181115083120.gz` with the name of your backup file.)
