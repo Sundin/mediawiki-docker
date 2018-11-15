@@ -1,0 +1,10 @@
+# MediaWiki configuration
+.env
+LocalSettings.php
+
+# Wiki data
+db_backup/
+images/
+
+# MacOS
+.DS_Store

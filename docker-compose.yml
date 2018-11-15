@@ -1,0 +1,42 @@
+# MediaWiki with MariaDB and automatic backups
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+version: '3.5'
+services:
+  mediawiki:
+    image: mediawiki
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - database
+    volumes:
+      - ./images:/var/www/html/images
+      # After initial setup, download LocalSettings.php to the same directory as
+      # this yaml and uncomment the following line and use compose to restart
+      # the mediawiki service
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+  database:
+    image: mariadb
+    restart: always
+    # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+    env_file:
+      - .env
+  backup:
+    image: deitch/mysql-backup
+    restart: always
+    volumes:
+      - ./db_backup:/db
+    env_file:
+      - .env
+    environment:
+      - DB_SERVER=database
+      - DB_PORT=3306
+      - DB_DUMP_TARGET=/db
+      - DB_DUMP_FREQ=1440
+      - DB_DUMP_BEGIN=+1
+networks:
+  default:
+    name: mediawiki-network
+    driver: bridge
