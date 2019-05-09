@@ -139,4 +139,6 @@ wfLoadExtension( 'WikiEditor' );
 # End of automatically generated settings.
 # Add more configuration options below.
 
+wfLoadExtension( 'CategoryTree' );
+
 require_once("/external_includes/visual_editor_configuration.php");

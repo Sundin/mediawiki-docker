@@ -5,9 +5,10 @@ A Docker image for setting up a MediaWiki using MariaDB for storage. Based on th
 ## Features
 * [MediaWiki](https://hub.docker.com/_/mediawiki/) 1.31.1
 * MariaDB
-* [deitch/mysql-backup](https://github.com/deitch/mysql-backup): for automatic database backups.
+* [deitch/mysql-backup](https://github.com/deitch/mysql-backup): For automatic database backups.
 * Parsoid: Translates between markdown syntax and HTML at runtime. Necessary for the VisualEditor plugin.
-* VisualEditor: enables WSIWYG editing of wiki pages.
+* VisualEditor: Enables WSIWYG editing of wiki pages.
+* [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree): An extension for listing categories using a tree structure.
 
 ## Set up the wiki
 * First create a file called `.env` and fill it with the following environment variables:
@@ -64,6 +65,10 @@ To restore a backup, simply run the following command in the project's root fold
 ## Hosting on AWS EC2
 
 See [the EC2 instructions](/ec2.md) for details on how to get your MediaWiki instance running on EC2.
+
+## Troubleshooting
+
+If you get errors like the following: `Fatal error: Uncaught Error: Call to a member function getCode() on null in /var/www/html/includes/user/User.php:1737`, try to restore your database to an earlier backup.
 
 ## Acknowledgments
 

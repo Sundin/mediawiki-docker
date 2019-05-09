@@ -1,4 +1,4 @@
-FROM mediawiki:latest
+FROM mediawiki:1.31
 
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
       https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Scribunto \
@@ -27,3 +27,6 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
       https://gerrit.wikimedia.org/r/p/mediawiki/skins/MinervaNeue \
       /var/www/html/skins/MinervaNeue
+
+RUN curl --remote-name https://extdist.wmflabs.org/dist/extensions/CategoryTree-REL1_32-5866bb9.tar.gz
+RUN tar -xzf CategoryTree-REL1_32-5866bb9.tar.gz -C /var/www/html/extensions
