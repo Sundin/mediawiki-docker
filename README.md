@@ -66,6 +66,13 @@ To restore a backup, simply run the following command in the project's root fold
 
 See [the EC2 instructions](/ec2.md) for details on how to get your MediaWiki instance running on EC2.
 
+## How to...
+
+In order to make VisualEditor the default editor when creating new pages (from the search bar), go to `http://localhost:8080/index.php/MediaWiki:Searchmenu-new?veaction=editsource` (make sure to replace your base URL if neccessary) and change the page to this:
+
+    Create the page <strong>[{{fullurl:$1|veaction=edit}}"$1"] on this wiki!</strong>
+
+
 ## Troubleshooting
 
 If you get errors like the following: `Fatal error: Uncaught Error: Call to a member function getCode() on null in /var/www/html/includes/user/User.php:1737`, try to restore your database to an earlier backup.
