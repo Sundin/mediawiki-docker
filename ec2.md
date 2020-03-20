@@ -45,3 +45,9 @@ Here follows instructions for how to get your MediaWiki instance running on an A
 - Make sure the backup folder is writable, e.g. `mkdir db_backup && chmod 777 db_backup`, see https://github.com/deitch/mysql-backup#permissions for other options.
 
 - Open HTTP port 80 in the security group of your EC2 instance.
+
+## Backup the backup folder
+
+Run the following command in order to copy the whole `db_backup` folder from the EC2 to your local computer, in case anything happens with the EC2 instance:
+
+        scp -i ~/.ssh/<private-key-pair-file>.pem -r ec2-user@<public-dns>:~/mediawiki-docker/db_backup db_backup
