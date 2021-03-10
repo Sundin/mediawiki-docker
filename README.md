@@ -70,6 +70,9 @@ To restore a backup, simply run the following command in the project's root fold
 
 See [the EC2 instructions](/ec2.md) for details on how to get your MediaWiki instance running on EC2.
 
+## Hosting on Heroku
+Coming soon...
+
 ## How to...
 
 In order to make VisualEditor the default editor when creating new pages (from the search bar), go to `http://localhost:8080/index.php/MediaWiki:Searchmenu-new?veaction=editsource` (make sure to replace your base URL if neccessary) and change the page to this:
