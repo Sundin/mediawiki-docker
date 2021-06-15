@@ -30,7 +30,7 @@ $wgMetaNamespace = "Connect_The_Dots";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://localhost:8080";
+$wgServer = "http://ctd.zapto.org";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -142,3 +142,8 @@ wfLoadExtension( 'WikiEditor' );
 wfLoadExtension( 'CategoryTree' );
 
 require_once("/external_includes/visual_editor_configuration.php");
+
+$wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD;
+
+$wgShowExceptionDetails = true;
+

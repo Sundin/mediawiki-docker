@@ -14,7 +14,7 @@ services:
       - ./images:/var/www/html/images
     restart: always
   database:
-    image: mariadb
+    image: mariadb:10.1.39
     restart: always
     # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
     environment:
@@ -22,7 +22,7 @@ services:
     env_file:
       - .env
   backup:
-    image: deitch/mysql-backup
+    image: deitch/mysql-backup@sha256:03a414973e8de82d3909bbe9b282d032da13eacc89fa768ce111d245d75e854e
     restart: always
     volumes:
       - ./db_backup:/db

@@ -1,6 +1,9 @@
-FROM mediawiki:1.31
+FROM mediawiki:1.32
 
-RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+RUN echo "hej"
+RUN echo $MEDIAWIKI_BRANCH
+
+RUN git clone --depth 1 \
       https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Scribunto \
       /var/www/html/extensions/Scribunto \
       && chmod a+x /var/www/html/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua*_linux_*/lua
