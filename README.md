@@ -66,6 +66,14 @@ To restore a backup, simply run the following command in the project's root fold
 
 (Replace `db_backup_20181115083120.gz` with the name of your backup file.)
 
+You can also make a manual backup:
+
+    docker exec mediawiki-docker_database_1 mysqldump --user <username> --password=<password> <db_name> > ./db_backup.dump
+
+And restore it this way:
+
+    docker exec -i mediawiki-docker_database_1 mysql --user <username> --password=<password> <db_name> < ./db_backup.dump
+
 ## Hosting on AWS EC2
 
 See [the EC2 instructions](/ec2.md) for details on how to get your MediaWiki instance running on EC2.
