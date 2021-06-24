@@ -12,10 +12,10 @@ services:
       - ./settings/LocalSettings.php:/var/www/html/LocalSettings.php
       - ./settings:/external_includes
       - ./images:/var/www/html/images
-    restart: always
+    restart: unless-stopped
   database:
     image: mariadb:10.1.39
-    restart: always
+    restart: unless-stopped
     # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
@@ -23,7 +23,7 @@ services:
       - .env
   backup:
     image: deitch/mysql-backup@sha256:03a414973e8de82d3909bbe9b282d032da13eacc89fa768ce111d245d75e854e
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./db_backup:/db
     env_file:
