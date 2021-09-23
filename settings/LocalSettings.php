@@ -30,7 +30,7 @@ $wgMetaNamespace = "Connect_The_Dots";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://ctd.zapto.org";
+$wgServer = "https://ctd.zapto.org";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
