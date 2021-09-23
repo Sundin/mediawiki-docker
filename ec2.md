@@ -40,7 +40,10 @@ Here follows instructions for how to get your MediaWiki instance running on an A
 
   - Change port from 8080 to 80 in docker-compose.yml
   - Change `$wgServer` in LocalSettings.php to the URL (public DNS) of your EC2 instance (no port number).
-  - Make images folder accessible to wiki container: `sudo chmod 777 images`
+  - Make images folder accessible to wiki container:
+
+        sudo chmod 777 images
+        sudo chown -R www-data:www-data images/
 
 - Make sure the backup folder is writable, e.g. `mkdir db_backup && chmod 777 db_backup`, see https://github.com/deitch/mysql-backup#permissions for other options.
 
@@ -51,3 +54,7 @@ Here follows instructions for how to get your MediaWiki instance running on an A
 Run the following command in order to copy the whole `db_backup` folder from the EC2 to your local computer, in case anything happens with the EC2 instance:
 
         scp -i ~/.ssh/<private-key-pair-file>.pem -r ec2-user@<public-dns>:~/mediawiki-docker/db_backup db_backup
+
+You also need to backup the images folder on top of this:
+
+        scp -i ~/.ssh/<private-key-pair-file>.pem -r ec2-user@<public-dns>:~/mediawiki-docker/images images_backup
